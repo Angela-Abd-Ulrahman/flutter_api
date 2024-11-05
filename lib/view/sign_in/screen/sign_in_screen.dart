@@ -64,7 +64,7 @@ class SignInScreen extends StatelessWidget {
                       controller: controller.emailController,
                       keyboardType: TextInputType.emailAddress,
                       hintText: 'xyz@gmail.com',
-                      textColor: AppColors.gryTextColor,
+                      textColor: AppColors.textFormColor,
                     ),
                     SizedBox(height: 20.h),
                     Text('Password',style: Theme.of(context).textTheme.labelMedium!.apply(color: AppColors.blackColor)),
@@ -73,7 +73,7 @@ class SignInScreen extends StatelessWidget {
                       controller: controller.passwordController,
                       hintText: '*******',
                       isPassword: controller.isPassword,
-                      textColor: AppColors.gryTextColor,
+                      textColor: AppColors.textFormColor,
                       suffixIcon: GestureDetector(
                         onTap: () {
                           controller.togglePasswordVisibility();
