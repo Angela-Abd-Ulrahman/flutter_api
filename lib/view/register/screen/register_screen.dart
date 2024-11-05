@@ -16,153 +16,124 @@ class RegisterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(leading: Padding(
+      appBar: AppBar(
+          leading: Padding(
         padding: const EdgeInsets.all(10),
         child: Container(
           decoration: BoxDecoration(
               color: AppColors.back_arrow_Color,
-              borderRadius: BorderRadius.circular(50.r)
-          ),
+              borderRadius: BorderRadius.circular(50.r)),
           child: IconButton(
-              onPressed: (){
+              onPressed: () {
                 Get.back();
-              }, icon: const Icon(Icons.arrow_back_ios_rounded,
-            size: MySize.iconSm,)),
+              },
+              icon: const Icon(
+                Icons.arrow_back_ios_rounded,
+                size: MySize.iconSm,
+              )),
         ),
-      )
-      ),
+      )),
       body: SafeArea(
         child: SingleChildScrollView(
           child: GetBuilder<RegisterController>(
-                init: RegisterController(),
-                builder: (controller) {
-                  return Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                     crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(10),
-                           child:  Column(
-                             crossAxisAlignment: CrossAxisAlignment.center,
-                             children: [
-                               CustomText(
-                                   text: 'Register Account',
-                                     fontSize: MySize.fontSizeXl.sp,
-                                     fontWeight: FontWeight.w700,
-                                     fontFamily: 'Raleway1'),
-                               SizedBox(height: 8.h,),
-                               Text('Fill Your details Or Continue With Social Media',
-                                 maxLines: 2,
-                                 overflow: TextOverflow.ellipsis,
-                                 textAlign: TextAlign.center,
-                                 style:  TextStyle(
-                                     fontSize: MySize.fontSizeMd.sp,
-                                     fontWeight: FontWeight.w400,
-                                     fontFamily: 'poppins',
-                                     color: AppColors.gryTextColor),),
-                               SizedBox(height: 20.h),
-                             ],
-                           )
-                          ),
-                         CustomText(
-                             text: 'Your Name ',
-                          textAlign: TextAlign.left,
-                          fontFamily: 'Raleway',
-                             fontWeight: FontWeight.w500,
-                             fontSize: MySize.fontSizeSm.sp,
-                         ),
-                         SizedBox(height: 30.h,),
-                        CustomTextFormField(
-                          controller: controller.nameController,
-                          hintText: 'xxxxxxx',
-                          textColor: AppColors.textFormColor,
-                        ),
-                         SizedBox(height: 20.h,),
-                         CustomText(
-                             text: 'Email Address',
-                          textAlign: TextAlign.left,
-                          fontFamily: 'Raleway',
-                             fontSize: MySize.fontSizeSm.sp),// Email TextField
-                        CustomTextFormField(
-                          controller: controller.emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          hintText: 'xyz@gmail.com',
-                          textColor: AppColors.textFormColor,
-                        ),
-                         SizedBox(height: 20.h),
-                         CustomText(
-                            text: 'Password',
-                          textAlign: TextAlign.left,
-                          fontFamily: 'Raleway',
-                        fontWeight: FontWeight.w500,
-                        fontSize: MySize.fontSizeSm.sp),
-                        // Password TextFormField
-                        CustomTextFormField(
-                          controller: controller.passwordController,
-                          hintText: '*******',
-                          textColor: AppColors.textFormColor,
-                          isPassword: controller.isPassword,
-                            suffixIcon: GestureDetector(
-                              onTap: (){
-                                controller.togglePasswordVisibility();
-                              },
-                                child: Icon(
-                                    size: MySize.iconSm,color: AppColors.textFormColor,
-                                    controller.isPassword ? Icons.visibility_off : Icons.visibility,
-                                ),
+            init: RegisterController(),
+            builder: (controller) {
+              return Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                        padding: const EdgeInsets.all(10),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text('Register Account', style: Theme.of(context).textTheme.headlineLarge,
+                              textAlign: TextAlign.center,),
+                            SizedBox(
+                              height: 8.h,
                             ),
+                            Text(' Fill  your  details  or  continue  with  social media',
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context).textTheme.headlineMedium),
+                            SizedBox(height: 20.h),
+                          ],
+                        )),
+                    Text('Your Name', style: Theme.of(context).textTheme.labelMedium!.apply(color: AppColors.blackColor)),
+                    SizedBox(height: 30.h,),
+                    CustomTextFormField(
+                      controller: controller.nameController,
+                      hintText: 'xxxxxxx',
+                      textColor: AppColors.textFormColor,
+                    ),
+                    SizedBox(height: 20.h,),
+                    Text('Email Address', style: Theme.of(context).textTheme.labelMedium!.apply(color: AppColors.blackColor)),
+                    CustomTextFormField(
+                      controller: controller.emailController,
+                      keyboardType: TextInputType.emailAddress,
+                      hintText: 'xyz@gmail.com',
+                      textColor: AppColors.textFormColor,
+                    ),
+                    SizedBox(height: 20.h),
+                    Text('Password', style: Theme.of(context).textTheme.labelMedium!.apply(color: AppColors.blackColor)),
+                    CustomTextFormField(
+                      controller: controller.passwordController,
+                      hintText: '*******',
+                      textColor: AppColors.textFormColor,
+                      isPassword: controller.isPassword,
+                      suffixIcon: GestureDetector(
+                        onTap: () {
+                          controller.togglePasswordVisibility();
+                        },
+                        child: Icon(
+                          size: MySize.iconSm,
+                          color: AppColors.textFormColor,
+                          controller.isPassword
+                              ? Icons.visibility_off
+                              : Icons.visibility,
                         ),
-                         SizedBox(height: 20.h),
-                        controller.isLoading
-                            ? Center(child: CircularProgressIndicator())
-                            : CustomButton(text: 'Sign Up',
+                      ),
+                    ),
+                    SizedBox(height: 20.h),
+                    controller.isLoading
+                        ? Center(child: CircularProgressIndicator())
+                        : CustomButton(
+                            text: 'Sign Up',
                             backgroundColor: AppColors.base_green_Color,
                             textColor: AppColors.whiteColor,
-                            onPressed: (){
-                          controller.signUp();
+                            onPressed: () {
+                              controller.signUp();
                             }),
-
-                         SizedBox(height: 30.h,),
-                       CustomButton(text: 'Sign up with Google',
-                           backgroundColor: AppColors.back_arrow_Color,
-                           textColor: AppColors.blackColor,
-                           image: SvgPicture.asset('assets/icons/google.svg'),
-                           onPressed: (){}),
-                        SizedBox(height: 100.h,),
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                             CustomText(
-                              text: 'Already Have Account?',
-                              fontFamily: 'Raleway',
-                              fontWeight: FontWeight.w500,
-                              fontSize: MySize.fontSizeSm.sp,
-                              color: AppColors.gryTextColor,
-                            ),
-                            InkWell(
-                              onTap: () {
-                                Get.toNamed(Routes.signInScreen);
-                              },
-                              child:  CustomText(
-                                text: 'Log In',
-                                fontFamily: 'Raleway',
-                                fontWeight: FontWeight.w500,
-                                fontSize: MySize.fontSizeSm.sp,
-                                color: AppColors.blackColor,),
-                            ),
-                          ],
-                        )
+                    SizedBox(height: 30.h,),
+                    CustomButton(
+                        text: 'Sign up with Google',
+                        backgroundColor: AppColors.back_arrow_Color,
+                        textColor: AppColors.blackColor,
+                        image: SvgPicture.asset('assets/icons/google.svg'),
+                        onPressed: () {}),
+                    SizedBox(height: 100.h,),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Already Have Account?', style: Theme.of(context).textTheme.labelMedium),
+                        InkWell(
+                          onTap: () {
+                            Get.toNamed(Routes.registerScreen);
+                          },
+                          child: Text(' Log In', style: Theme.of(context).textTheme.labelMedium!.apply(color: AppColors.blackColor)),
+                        ),
                       ],
                     ),
-                  );
-                },
-              ),
+                  ],
+                ),
+              );
+            },
+          ),
         ),
-              ),
+      ),
     );
   }
 }
-
-

@@ -34,12 +34,9 @@ class SideMenuDrawer extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 30.h),
-                 CustomText(
-                   text: 'Programmer X',
-                    color: AppColors.whiteColor,
-                    fontFamily: 'Raleway',
-                    fontWeight: FontWeight.w500,
-                    fontSize: MySize.fontSizeMd.sp,
+                Text(
+                  'Programmer X',
+                  style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 SizedBox(height: 50.h),
                 buildDrawerItem(
